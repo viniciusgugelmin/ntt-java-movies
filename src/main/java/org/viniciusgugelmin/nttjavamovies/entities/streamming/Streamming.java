@@ -1,14 +1,14 @@
-package org.viniciusgugelmin.nttjavamovies.entities.director;
+package org.viniciusgugelmin.nttjavamovies.entities.streamming;
 
 import jakarta.persistence.*;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "directors")
-public class Director implements IDirector {
+@Table(name = "streammings")
+public class Streamming implements IStreamming {
+
     /* Properties */
 
     @Id
@@ -18,11 +18,8 @@ public class Director implements IDirector {
     @Column(nullable = false, length = 100)
     private String Name;
 
-    @Column(nullable = false)
-    private Date Birthdate;
-
-    @Column(nullable = false, length = 50)
-    private String Country;
+    @Column(nullable = false, length = 500)
+    private String Url;
 
     /* Getters */
 
@@ -37,16 +34,16 @@ public class Director implements IDirector {
     }
 
     @Override
-    public Date getBirthDate() {
-        return this.Birthdate;
-    }
-
-    @Override
-    public String getCountry() {
-        return this.Country;
+    public String getUrl() {
+        return this.Url;
     }
 
     /* Setters */
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public void setName(String name) {
@@ -54,13 +51,8 @@ public class Director implements IDirector {
     }
 
     @Override
-    public void setBirthDate(Date birthDate) {
-        this.Birthdate = birthDate;
-    }
-
-    @Override
-    public void setCountry(String country) {
-        this.Country = country;
+    public void setUrl(String url) {
+        this.Url = url;
     }
 
     /* Relations */

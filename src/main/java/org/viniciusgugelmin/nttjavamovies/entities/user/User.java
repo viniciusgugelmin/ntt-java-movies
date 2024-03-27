@@ -1,4 +1,4 @@
-package org.viniciusgugelmin.nttjavamovies.entities.franchise;
+package org.viniciusgugelmin.nttjavamovies.entities.user;
 
 import jakarta.persistence.*;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
@@ -6,8 +6,8 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import java.util.List;
 
 @Entity
-@Table(name = "franchises")
-public class Franchise implements IFranchise {
+@Table(name = "users")
+public class User implements IUser {
     /* Properties */
 
     @Id
@@ -15,48 +15,44 @@ public class Franchise implements IFranchise {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String Name;
+    private String name;
 
     /* Getters */
 
-    @Override
     public Long getId() {
         return this.id;
     }
 
-    @Override
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     /* Setters */
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Override
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
 
     /* Relations */
 
-    @OneToMany()
-    private List<Movie> Movies;
+    @ManyToMany()
+    private List<Movie> FavoriteMovies;
 
     /* Relations Getters */
 
     @Override
-    public List<Movie> getMovies() {
-        return this.Movies;
+    public List<Movie> getFavoriteMovies() {
+        return this.FavoriteMovies;
     }
 
     /* Relations Setters */
 
     @Override
-    public void setMovies(List<Movie> movies) {
-        this.Movies = movies;
+    public void setFavoriteMovies(List<Movie> movies) {
+        this.FavoriteMovies = movies;
     }
 }

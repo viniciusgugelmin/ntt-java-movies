@@ -2,8 +2,10 @@ package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
 import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
+import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
 import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
+import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.time.Year;
@@ -150,20 +152,23 @@ public class Movie implements IMovie {
 
     /* Relations */
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne()
     private Genre Genre;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne()
     private Studio Studio;
 
-    @ManyToOne
-    @JoinColumn()
+    @ManyToOne()
     private Franchise Franchise;
 
-    @ManyToMany
+    @ManyToMany()
     private List<Actor> Actors;
+
+    @ManyToMany()
+    private List<Director> Directors;
+
+    @ManyToMany()
+    private List<Streamming> Streammings;
 
     /* Relations Getters */
 
@@ -187,6 +192,16 @@ public class Movie implements IMovie {
         return this.Actors;
     }
 
+    @Override
+    public List<Director> getDirectors() {
+        return this.Directors;
+    }
+
+    @Override
+    public List<Streamming> getStreammings() {
+        return this.Streammings;
+    }
+
     /* Relations Setters */
 
     @Override
@@ -207,5 +222,15 @@ public class Movie implements IMovie {
     @Override
     public void setActors(List<Actor> actors) {
         this.Actors = actors;
+    }
+
+    @Override
+    public void setDirectors(List<Director> directors) {
+        this.Directors = directors;
+    }
+
+    @Override
+    public void setStreammings(List<Streamming> streammings) {
+        this.Streammings = streammings;
     }
 }

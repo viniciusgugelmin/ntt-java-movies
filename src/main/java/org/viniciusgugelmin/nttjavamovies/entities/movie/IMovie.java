@@ -1,8 +1,10 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
+import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
 import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
+import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.time.Year;
@@ -72,6 +74,10 @@ public interface IMovie {
 
     List<Actor> getActors();
 
+    List<Director> getDirectors();
+
+    List<Streamming> getStreammings();
+
     /* Relations Setters */
 
     void setGenre(Genre genre);
@@ -81,4 +87,8 @@ public interface IMovie {
     void setFranchise(Franchise franchise);
 
     void setActors(List<Actor> actors);
+
+    void setDirectors(List<Director> directors);
+
+    void setStreammings(List<Streamming> streammings);
 }

@@ -38,12 +38,12 @@ public class Actor implements IActor {
 
     @Override
     public Date getBirthDate() {
-        return null;
+        return this.Birthdate;
     }
 
     @Override
     public String getCountry() {
-        return null;
+        return this.Country;
     }
 
     /* Setters */
