@@ -1,11 +1,13 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
+import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
 import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.time.Year;
 import java.util.Date;
+import java.util.List;
 
 public interface MovieDTO {
     /* Getters */
@@ -68,6 +70,8 @@ public interface MovieDTO {
 
     Franchise getFranchise();
 
+    List<Actor> getActors();
+
     /* Relations Setters */
 
     void setGenre(Genre genre);
@@ -75,4 +79,6 @@ public interface MovieDTO {
     void setStudio(Studio studio);
 
     void setFranchise(Franchise franchise);
+
+    void setActors(List<Actor> actors);
 }

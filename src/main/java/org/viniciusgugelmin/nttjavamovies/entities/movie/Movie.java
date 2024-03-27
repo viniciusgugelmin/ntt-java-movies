@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
+import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
 import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
@@ -8,6 +9,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -160,6 +162,9 @@ public class Movie implements MovieDTO {
     @JoinColumn()
     private Franchise Franchise;
 
+    @ManyToMany
+    private List<Actor> Actors;
+
     /* Relations Getters */
 
     @Override
@@ -177,6 +182,11 @@ public class Movie implements MovieDTO {
         return this.Franchise;
     }
 
+    @Override
+    public List<Actor> getActors() {
+        return this.Actors;
+    }
+
     /* Relations Setters */
 
     @Override
@@ -192,5 +202,10 @@ public class Movie implements MovieDTO {
     @Override
     public void setFranchise(Franchise franchise) {
         this.Franchise = franchise;
+    }
+
+    @Override
+    public void setActors(List<Actor> actors) {
+        this.Actors = actors;
     }
 }

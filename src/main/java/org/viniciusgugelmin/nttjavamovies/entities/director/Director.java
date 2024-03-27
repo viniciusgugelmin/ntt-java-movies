@@ -1,4 +1,4 @@
-package org.viniciusgugelmin.nttjavamovies.entities.actor;
+package org.viniciusgugelmin.nttjavamovies.entities.director;
 
 import jakarta.persistence.*;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "actors")
-public class Actor implements ActorDTO {
+@Table(name = "directors")
+public class Director implements DirectorDTO {
     /* Properties */
 
     @Id
@@ -65,7 +65,7 @@ public class Actor implements ActorDTO {
 
     /* Relations */
 
-    @ManyToMany()
+    @OneToMany()
     private List<Movie> Movies;
 
     /* Relations Getters */
