@@ -1,13 +1,10 @@
-package org.viniciusgugelmin.nttjavamovies.entities.genre;
+package org.viniciusgugelmin.nttjavamovies.entities.studio;
 
 import jakarta.persistence.*;
-import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
-
-import java.util.List;
 
 @Entity
-@Table(name = "genres")
-public class Genre implements GenreDTO {
+@Table(name = "studios")
+public class Studio implements StudioDTO {
     /* Properties */
 
     @Id
@@ -16,6 +13,9 @@ public class Genre implements GenreDTO {
 
     @Column(nullable = false, length = 100)
     private String Name;
+
+    @Column(nullable = false, length = 100)
+    private String Country;
 
     /* Getters */
 
@@ -27,6 +27,11 @@ public class Genre implements GenreDTO {
     @Override
     public String getName() {
         return this.Name;
+    }
+
+    @Override
+    public String getCountry() {
+        return this.Country;
     }
 
     /* Setters */
@@ -41,22 +46,8 @@ public class Genre implements GenreDTO {
         this.Name = name;
     }
 
-    /* Relations */
-
-    @OneToMany()
-    private List<Movie> Movies;
-
-    /* Relations Getters */
-
     @Override
-    public List<Movie> getMovies() {
-        return this.Movies;
-    }
-
-    /* Relations Setters */
-
-    @Override
-    public void setMovies(List<Movie> movies) {
-        this.Movies = movies;
+    public void setCountry(String country) {
+        this.Country = country;
     }
 }
