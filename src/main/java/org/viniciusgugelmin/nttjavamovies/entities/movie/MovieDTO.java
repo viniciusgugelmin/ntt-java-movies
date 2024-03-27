@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
+import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
@@ -65,9 +66,13 @@ public interface MovieDTO {
 
     Studio getStudio();
 
+    Franchise getFranchise();
+
     /* Relations Setters */
 
     void setGenre(Genre genre);
 
     void setStudio(Studio studio);
+
+    void setFranchise(Franchise franchise);
 }

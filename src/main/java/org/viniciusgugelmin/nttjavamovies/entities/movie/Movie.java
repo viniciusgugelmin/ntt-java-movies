@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
+import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
@@ -155,6 +156,10 @@ public class Movie implements MovieDTO {
     @JoinColumn(nullable = false)
     private Studio Studio;
 
+    @ManyToOne
+    @JoinColumn()
+    private Franchise Franchise;
+
     /* Relations Getters */
 
     @Override
@@ -167,6 +172,11 @@ public class Movie implements MovieDTO {
         return this.Studio;
     }
 
+    @Override
+    public Franchise getFranchise() {
+        return this.Franchise;
+    }
+
     /* Relations Setters */
 
     @Override
@@ -177,5 +187,10 @@ public class Movie implements MovieDTO {
     @Override
     public void setStudio(Studio studio) {
         this.Studio = studio;
+    }
+
+    @Override
+    public void setFranchise(Franchise franchise) {
+        this.Franchise = franchise;
     }
 }
