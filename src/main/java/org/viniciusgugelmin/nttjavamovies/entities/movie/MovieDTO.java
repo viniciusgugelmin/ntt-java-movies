@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
+import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
+
 import java.time.Year;
 import java.util.Date;
 
@@ -13,8 +15,6 @@ public interface MovieDTO {
     Date getReleased();
 
     Double getRuntime();
-
-    String getGenre();
 
     /*Director getDirector();*/
 
@@ -40,8 +40,6 @@ public interface MovieDTO {
 
     void setRuntime(Double runtime);
 
-    void setGenre(String genre);
-
     /*void setDirector(Director director);*/
 
     /*void setActors(ArrayList<Actor> actors);*/
@@ -59,4 +57,12 @@ public interface MovieDTO {
     /* Computed */
 
     Year getYear();
+
+    /* Relations Getters */
+
+    Genre getGenre();
+
+    /* Relations Setters */
+
+    void setGenre(Genre genre);
 }

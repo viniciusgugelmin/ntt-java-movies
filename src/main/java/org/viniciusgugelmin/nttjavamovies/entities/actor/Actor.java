@@ -1,12 +1,11 @@
 package org.viniciusgugelmin.nttjavamovies.entities.actor;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "actors")
 public class Actor implements ActorDTO {
     /* Properties */
     @Id

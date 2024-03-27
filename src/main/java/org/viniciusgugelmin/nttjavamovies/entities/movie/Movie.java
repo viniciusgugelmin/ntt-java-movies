@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
+import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -23,9 +24,6 @@ public class Movie implements MovieDTO {
 
     @Column(nullable = false)
     private Double Runtime;
-
-    @Column(nullable = false, length = 50)
-    private String Genre;
 
     @Column(length = 500)
     private String Plot;
@@ -62,11 +60,6 @@ public class Movie implements MovieDTO {
     @Override
     public Double getRuntime() {
         return this.Runtime;
-    }
-
-    @Override
-    public String getGenre() {
-        return this.Genre;
     }
 
     @Override
@@ -117,11 +110,6 @@ public class Movie implements MovieDTO {
     }
 
     @Override
-    public void setGenre(String genre) {
-        this.Genre = genre;
-    }
-
-    @Override
     public void setPlot(String plot) {
         this.Plot = plot;
     }
@@ -154,5 +142,25 @@ public class Movie implements MovieDTO {
         calendar.setTime(this.Released);
 
         return Year.of(calendar.get(Calendar.YEAR));
+    }
+
+    /* Relations */
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Genre Genre;
+
+    /* Relations Getters */
+
+    @Override
+    public Genre getGenre() {
+        return this.Genre;
+    }
+
+    /* Relations Setters */
+
+    @Override
+    public void setGenre(Genre genre) {
+        this.Genre = genre;
     }
 }
