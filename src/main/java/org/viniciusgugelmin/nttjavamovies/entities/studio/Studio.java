@@ -1,6 +1,9 @@
 package org.viniciusgugelmin.nttjavamovies.entities.studio;
 
 import jakarta.persistence.*;
+import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+
+import java.util.List;
 
 @Entity
 @Table(name = "studios")
@@ -49,5 +52,24 @@ public class Studio implements StudioDTO {
     @Override
     public void setCountry(String country) {
         this.Country = country;
+    }
+
+    /* Relations */
+
+    @OneToMany()
+    private List<Movie> movies;
+
+    /* Relations Getters */
+
+    @Override
+    public List<Movie> getMovies() {
+        return this.movies;
+    }
+
+    /* Relations Setters */
+
+    @Override
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }

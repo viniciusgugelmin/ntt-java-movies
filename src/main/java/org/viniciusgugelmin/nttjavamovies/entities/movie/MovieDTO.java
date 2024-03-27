@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
+import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.time.Year;
 import java.util.Date;
@@ -62,7 +63,11 @@ public interface MovieDTO {
 
     Genre getGenre();
 
+    Studio getStudio();
+
     /* Relations Setters */
 
     void setGenre(Genre genre);
+
+    void setStudio(Studio studio);
 }

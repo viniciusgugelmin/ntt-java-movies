@@ -1,5 +1,9 @@
 package org.viniciusgugelmin.nttjavamovies.entities.studio;
 
+import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+
+import java.util.List;
+
 public interface StudioDTO {
     /* Getters */
 
@@ -16,4 +20,12 @@ public interface StudioDTO {
     public void setName(String name);
 
     public void setCountry(String country);
+
+    /* Relations Getters */
+
+    public List<Movie> getMovies();
+
+    /* Relations Setters */
+
+    public void setMovies(List<Movie> movies);
 }

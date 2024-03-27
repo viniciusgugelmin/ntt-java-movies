@@ -2,6 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
+import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -150,6 +151,10 @@ public class Movie implements MovieDTO {
     @JoinColumn(nullable = false)
     private Genre Genre;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Studio Studio;
+
     /* Relations Getters */
 
     @Override
@@ -157,10 +162,20 @@ public class Movie implements MovieDTO {
         return this.Genre;
     }
 
+    @Override
+    public Studio getStudio() {
+        return this.Studio;
+    }
+
     /* Relations Setters */
 
     @Override
     public void setGenre(Genre genre) {
         this.Genre = genre;
+    }
+
+    @Override
+    public void setStudio(Studio studio) {
+        this.Studio = studio;
     }
 }
