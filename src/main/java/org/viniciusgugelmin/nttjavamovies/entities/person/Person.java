@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.entities.person;
 
 import java.util.Date;
 
-public abstract class Person implements PersonDTO {
+public abstract class Person implements IPerson {
     /* Properties */
 
     protected String Name;

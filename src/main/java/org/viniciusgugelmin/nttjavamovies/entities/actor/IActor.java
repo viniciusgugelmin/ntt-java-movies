@@ -1,11 +1,11 @@
-package org.viniciusgugelmin.nttjavamovies.entities.director;
+package org.viniciusgugelmin.nttjavamovies.entities.actor;
 
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
-import org.viniciusgugelmin.nttjavamovies.entities.person.PersonDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.person.IPerson;
 
 import java.util.List;
 
-public interface DirectorDTO extends PersonDTO {
+public interface IActor extends IPerson {
     /* Getters */
 
     Long getId();

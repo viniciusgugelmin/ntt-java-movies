@@ -4,7 +4,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
 
-public interface GenreDTO {
+public interface IGenre {
     /* Getters */
 
     Long getId();

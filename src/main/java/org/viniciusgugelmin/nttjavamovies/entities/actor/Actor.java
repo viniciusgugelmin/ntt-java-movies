@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "actors")
-public class Actor implements ActorDTO {
+public class Actor implements IActor {
     /* Properties */
 
     @Id

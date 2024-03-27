@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "franchises")
-public class Franchise implements FranchiseDTO {
+public class Franchise implements IFranchise {
     /* Properties */
 
     @Id

@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.entities.person;
 
 import java.util.Date;
 
-public interface PersonDTO {
+public interface IPerson {
     /* Getters */
 
     String getName();

@@ -4,7 +4,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
 
-public interface StudioDTO {
+public interface IStudio {
     /* Getters */
 
     public Long getId();

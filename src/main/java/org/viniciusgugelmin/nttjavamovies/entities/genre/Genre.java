@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "genres")
-public class Genre implements GenreDTO {
+public class Genre implements IGenre {
     /* Properties */
 
     @Id

@@ -4,7 +4,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
 
-public interface FranchiseDTO {
+public interface IFranchise {
     /* Getters */
 
     public Long getId();

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "directors")
-public class Director implements DirectorDTO {
+public class Director implements IDirector {
     /* Properties */
 
     @Id

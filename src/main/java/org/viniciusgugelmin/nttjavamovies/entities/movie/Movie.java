@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "movies")
-public class Movie implements MovieDTO {
+public class Movie implements IMovie {
     /* Properties */
 
     @Id

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "studios")
-public class Studio implements StudioDTO {
+public class Studio implements IStudio {
     /* Properties */
 
     @Id
