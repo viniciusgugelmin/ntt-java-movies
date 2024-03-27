@@ -23,13 +23,13 @@ public class ActorController implements  IActorController {
 
     @PostMapping(value = "/")
     @Override
-    public ResponseEntity<IActor> save(IActor actor) {
+    public ResponseEntity<IActor> save(@RequestBody IActor actor) {
         return null;
     }
 
     @PutMapping(value = "/")
     @Override
-    public ResponseEntity<IActor> update(IActor actor) {
+    public ResponseEntity<IActor> update(@RequestBody IActor actor) {
         return null;
     }
 
