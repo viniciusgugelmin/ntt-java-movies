@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/actor")
-public class ActorController implements  IActorController {
+public class ActorController implements IActorController {
     @GetMapping(value = "/")
     @Override
     public ResponseEntity<List<IActor>> findAll() {
