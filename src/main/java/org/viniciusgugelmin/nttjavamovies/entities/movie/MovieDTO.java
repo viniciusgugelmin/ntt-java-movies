@@ -4,21 +4,6 @@ import java.time.Year;
 import java.util.Date;
 
 public interface MovieDTO {
-    /* Properties */
-
-    Long imdbID = null;
-    String Title = null;
-    Date Released = null;
-    Double Runtime = null;
-    String Genre = null;
-    /*Director Director;*/
-    /*ArrayList<Actor> Actors;*/
-    String Plot = null;
-    String Language = null;
-    String Country = null;
-    String Awards = null;
-    String Poster = null;
-
     /* Getters */
 
     Long getImdbID();
