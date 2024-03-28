@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.user;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.services.user.IUserService;
 
+@Tag(name = "User")
 @RestController
 @RequestMapping(value = "/user")
 public class UserController implements IUserController {

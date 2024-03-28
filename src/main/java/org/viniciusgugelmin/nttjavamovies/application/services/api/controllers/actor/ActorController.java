@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.actor;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.actor.IActorService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Actor")
 @RestController
 @RequestMapping(value = "/actor")
 public class ActorController implements IActorController {
@@ -19,7 +21,7 @@ public class ActorController implements IActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Actor>> findAll() {
         List<Actor> actors = this.actorService.list();
@@ -35,7 +37,7 @@ public class ActorController implements IActorController {
         return actor.isPresent() ? ResponseEntity.ok(actor) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Actor> save(@RequestBody Actor actor) {
         Actor newActor = this.actorService.create(actor);
@@ -43,7 +45,7 @@ public class ActorController implements IActorController {
         return ResponseEntity.ok(newActor);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Actor> update(@RequestBody Actor actor) {
         Actor updatedActor = this.actorService.update(actor);

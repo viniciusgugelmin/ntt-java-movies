@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.movie;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.movie.IMovieService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Movie")
 @RestController
 @RequestMapping(value = "/movie")
 public class MovieController implements IMovieController {
@@ -19,7 +21,7 @@ public class MovieController implements IMovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Movie>> findAll() {
         List<Movie> movies = this.movieService.list();
@@ -35,7 +37,7 @@ public class MovieController implements IMovieController {
         return movie.isPresent() ? ResponseEntity.ok(movie) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Movie> save(@RequestBody Movie movie) {
         Movie newMovie = this.movieService.create(movie);
@@ -43,7 +45,7 @@ public class MovieController implements IMovieController {
         return ResponseEntity.ok(newMovie);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Movie> update(@RequestBody Movie movie) {
         Movie updatedMovie = this.movieService.update(movie);

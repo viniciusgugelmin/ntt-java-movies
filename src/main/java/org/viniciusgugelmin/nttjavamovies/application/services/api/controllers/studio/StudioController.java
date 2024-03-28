@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.studio;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.studio.IStudioService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Studio")
 @RestController
 @RequestMapping(value = "/studio")
 public class StudioController implements IStudioController {
@@ -19,7 +21,7 @@ public class StudioController implements IStudioController {
         this.studioService = studioService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Studio>> findAll() {
         List<Studio> studios = studioService.list();
@@ -35,7 +37,7 @@ public class StudioController implements IStudioController {
         return studio.isPresent() ? ResponseEntity.ok(studio) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Studio> save(@RequestBody Studio studio) {
         Studio newStudio = studioService.create(studio);
@@ -43,7 +45,7 @@ public class StudioController implements IStudioController {
         return ResponseEntity.ok(newStudio);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Studio> update(@RequestBody Studio studio) {
         Studio updatedStudio = studioService.update(studio);

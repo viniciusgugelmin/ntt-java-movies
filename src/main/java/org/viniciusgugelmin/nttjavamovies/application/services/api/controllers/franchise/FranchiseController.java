@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.franchise;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.franchise.IFranchiseService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Franchise")
 @RestController
 @RequestMapping(value = "/franchise")
 public class FranchiseController implements IFranchiseController {
@@ -19,7 +21,7 @@ public class FranchiseController implements IFranchiseController {
         this.franchiseService = franchiseService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Franchise>> findAll() {
         List<Franchise> franchises = this.franchiseService.list();
@@ -35,7 +37,7 @@ public class FranchiseController implements IFranchiseController {
         return franchise.isPresent() ? ResponseEntity.ok(franchise) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Franchise> save(@RequestBody Franchise franchise) {
         Franchise newFranchise = this.franchiseService.create(franchise);
@@ -43,7 +45,7 @@ public class FranchiseController implements IFranchiseController {
         return ResponseEntity.ok(newFranchise);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Franchise> update(@RequestBody Franchise franchise) {
         Franchise updatedFranchise = this.franchiseService.update(franchise);

@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.director;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.director.IDirectorService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Director")
 @RestController
 @RequestMapping(value = "/director")
 public class DirectorController implements IDirectorController {
@@ -19,7 +21,7 @@ public class DirectorController implements IDirectorController {
         this.directorService = directorService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Director>> findAll() {
         List<Director> directors = this.directorService.list();
@@ -35,7 +37,7 @@ public class DirectorController implements IDirectorController {
         return director.isPresent() ? ResponseEntity.ok(director) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Director> save(@RequestBody Director director) {
         Director newDirector = this.directorService.create(director);
@@ -43,7 +45,7 @@ public class DirectorController implements IDirectorController {
         return ResponseEntity.ok(newDirector);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Director> update(@RequestBody Director director) {
         Director updatedDirector = this.directorService.update(director);

@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.genre;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.genre.IGenreService;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Genre")
 @RestController
 @RequestMapping(value = "/genre")
 public class GenreController implements IGenreController {
@@ -19,7 +21,7 @@ public class GenreController implements IGenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Genre>> findAll() {
         List<Genre> genres = this.genreService.list();
@@ -35,7 +37,7 @@ public class GenreController implements IGenreController {
         return genre.isPresent() ? ResponseEntity.ok(genre) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Genre> save(@RequestBody Genre genre) {
         Genre newGenre = this.genreService.create(genre);
@@ -43,7 +45,7 @@ public class GenreController implements IGenreController {
         return ResponseEntity.ok(newGenre);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Genre> update(@RequestBody Genre genre) {
         Genre updatedGenre = this.genreService.update(genre);

@@ -1,5 +1,6 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.streamming;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.services.streamming.IStreammingService
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Streamming")
 @RestController
 @RequestMapping(value = "/streamming")
 public class StreammingController implements IStreammingController {
@@ -19,7 +21,7 @@ public class StreammingController implements IStreammingController {
         this.streammingService = streammingService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     @Override
     public ResponseEntity<List<Streamming>> findAll() {
         List<Streamming> streammings = this.streammingService.list();
@@ -35,7 +37,7 @@ public class StreammingController implements IStreammingController {
         return streamming.isPresent() ? ResponseEntity.ok(streamming) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     @Override
     public ResponseEntity<Streamming> save(@RequestBody Streamming streamming) {
         Streamming newStreamming = this.streammingService.create(streamming);
@@ -43,7 +45,7 @@ public class StreammingController implements IStreammingController {
         return ResponseEntity.ok(newStreamming);
     }
 
-    @PutMapping(value = "/")
+    @PutMapping(value = "")
     @Override
     public ResponseEntity<Streamming> update(@RequestBody Streamming streamming) {
         Streamming updatedStreamming = this.streammingService.update(streamming);
