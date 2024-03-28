@@ -53,6 +53,11 @@ public class Director implements IDirector {
     /* Setters */
 
     @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
     public void setName(String name) {
         this.Name = name;
     }

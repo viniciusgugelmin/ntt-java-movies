@@ -10,6 +10,10 @@ public interface IDirector extends IPerson {
 
     Long getId();
 
+    /* Setters */
+
+    void setId(Long id);
+
     /* Relations Getters */
 
     List<Movie> getMovies();

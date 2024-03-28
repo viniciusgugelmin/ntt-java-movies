@@ -1,60 +1,43 @@
-package org.viniciusgugelmin.nttjavamovies.entities.movie;
+package org.viniciusgugelmin.nttjavamovies.dtos.movie;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
-import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
-import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
-import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
-import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
-import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
-import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
+import org.viniciusgugelmin.nttjavamovies.dtos.actor.ActorDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.director.DirectorDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.franchise.FranchiseDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.genre.GenreDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.streamming.StreammingDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.studio.StudioDTO;
 
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-@Entity
-@Table(name = "movies")
-public class Movie implements IMovie {
+public class MovieDTO implements IMovieDTO {
     /* Properties */
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imdbID;
+    private Optional<Long> imdbID;
 
-    @NotNull
-    @Length(max = 100)
     private String Title;
 
-    @NotNull
     private Date Released;
 
-    @NotNull
     private Double Runtime;
 
-    @Length(max = 500)
-    private String Plot;
+    private Optional<String> Plot;
 
-    @NotNull
-    @Length(max = 50)
     private String Language;
 
-    @NotNull
-    @Length(max = 50)
     private String Country;
 
-    @Length(max = 100)
-    private String Awards;
+    private Optional<String> Awards;
 
-    @Length(max = 100)
-    private String Poster;
+    private Optional<String> Poster;
 
     /* Getters */
 
     @Override
-    public Long getImdbID() {
+    public Optional<Long> getImdbID() {
         return this.imdbID;
     }
 
@@ -74,7 +57,7 @@ public class Movie implements IMovie {
     }
 
     @Override
-    public String getPlot() {
+    public Optional<String> getPlot() {
         return this.Plot;
     }
 
@@ -89,12 +72,12 @@ public class Movie implements IMovie {
     }
 
     @Override
-    public String getAwards() {
+    public Optional<String> getAwards() {
         return this.Awards;
     }
 
     @Override
-    public String getPoster() {
+    public Optional<String> getPoster() {
         return this.Poster;
     }
 
@@ -102,7 +85,7 @@ public class Movie implements IMovie {
 
     @Override
     public void setImdbID(Long imdbID) {
-        this.imdbID = imdbID;
+        this.imdbID = Optional.ofNullable(imdbID);
     }
 
     @Override
@@ -122,7 +105,7 @@ public class Movie implements IMovie {
 
     @Override
     public void setPlot(String plot) {
-        this.Plot = plot;
+        this.Plot = Optional.ofNullable(plot);
     }
 
     @Override
@@ -137,12 +120,12 @@ public class Movie implements IMovie {
 
     @Override
     public void setAwards(String awards) {
-        this.Awards = awards;
+        this.Awards = Optional.ofNullable(awards);
     }
 
     @Override
     public void setPoster(String poster) {
-        this.Poster = poster;
+        this.Poster = Optional.ofNullable(poster);
     }
 
     /* Computed */
@@ -157,85 +140,79 @@ public class Movie implements IMovie {
 
     /* Relations */
 
-    @ManyToOne
-    private Genre Genre;
+    private GenreDTO Genre;
 
-    @ManyToOne
-    private Studio Studio;
+    private StudioDTO Studio;
 
-    @ManyToOne
-    private Franchise Franchise;
+    private FranchiseDTO Franchise;
 
-    @ManyToMany
-    private List<Actor> Actors;
+    private List<ActorDTO> actorDTOS;
 
-    @ManyToMany
-    private List<Director> Directors;
+    private List<DirectorDTO> Directors;
 
-    @ManyToMany
-    private List<Streamming> Streammings;
+    private List<StreammingDTO> Streammings;
 
     /* Relations Getters */
 
     @Override
-    public Genre getGenre() {
+    public GenreDTO getGenre() {
         return this.Genre;
     }
 
     @Override
-    public Studio getStudio() {
+    public StudioDTO getStudio() {
         return this.Studio;
     }
 
     @Override
-    public Franchise getFranchise() {
+    public FranchiseDTO getFranchise() {
         return this.Franchise;
     }
 
     @Override
-    public List<Actor> getActors() {
-        return this.Actors;
+    public List<ActorDTO> getActors() {
+        return this.actorDTOS;
     }
 
     @Override
-    public List<Director> getDirectors() {
+    public List<DirectorDTO> getDirectors() {
         return this.Directors;
     }
 
     @Override
-    public List<Streamming> getStreammings() {
+    public List<StreammingDTO> getStreammings() {
         return this.Streammings;
     }
 
     /* Relations Setters */
 
     @Override
-    public void setGenre(Genre genre) {
+    public void setGenre(GenreDTO genre) {
         this.Genre = genre;
     }
 
     @Override
-    public void setStudio(Studio studio) {
+    public void setStudio(StudioDTO studio) {
         this.Studio = studio;
     }
 
     @Override
-    public void setFranchise(Franchise franchise) {
+    public void setFranchise(FranchiseDTO franchise) {
         this.Franchise = franchise;
     }
 
     @Override
-    public void setActors(List<Actor> actors) {
-        this.Actors = actors;
+    public void setActors(List<ActorDTO> actors) {
+        this.actorDTOS = actors;
     }
 
     @Override
-    public void setDirectors(List<Director> directors) {
+    public void setDirectors(List<DirectorDTO> directors) {
         this.Directors = directors;
     }
 
     @Override
-    public void setStreammings(List<Streamming> streammings) {
+    public void setStreammings(List<StreammingDTO> streammings) {
         this.Streammings = streammings;
     }
 }

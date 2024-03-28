@@ -1,39 +1,34 @@
-package org.viniciusgugelmin.nttjavamovies.entities.actor;
+package org.viniciusgugelmin.nttjavamovies.dtos.actor;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
-import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
 
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "actors")
-public class Actor implements IActor {
+
+public class ActorDTO implements IActorDTO {
     /* Properties */
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @Length(max = 100)
     private String Name;
 
-    @NotNull
     private Date Birthdate;
 
-    @NotNull
-    @Length(max = 50)
     private String Country;
 
-    /* Getters */
+    /* Constructors */
 
-    @Override
-    public Long getId() {
-        return this.id;
+    public ActorDTO() {
+
     }
+
+    public ActorDTO(Actor actor) {
+        this.Name = actor.getName();
+        this.Birthdate = actor.getBirthDate();
+        this.Country = actor.getCountry();
+    }
+
+    /* Getters */
 
     @Override
     public String getName() {
@@ -53,11 +48,6 @@ public class Actor implements IActor {
     /* Setters */
 
     @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
     public void setName(String name) {
         this.Name = name;
     }
@@ -74,20 +64,17 @@ public class Actor implements IActor {
 
     /* Relations */
 
-    @ManyToMany
-    private List<Movie> Movies;
+    private List<MovieDTO> Movies;
 
     /* Relations Getters */
 
-    @Override
-    public List<Movie> getMovies() {
+    public List<MovieDTO> getMovies() {
         return this.Movies;
     }
 
     /* Relations Setters */
 
-    @Override
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(List<MovieDTO> movies) {
         this.Movies = movies;
     }
 }
