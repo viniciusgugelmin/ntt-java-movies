@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.movie.IMovie;
+import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.repositories.movie.MovieRepository;
 
 import java.util.List;
@@ -18,22 +18,22 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public List<IMovie> list() {
+    public List<Movie> list() {
         return this.movieRepository.findAll();
     }
 
     @Override
-    public Optional<IMovie> findById(Long id) {
+    public Optional<Movie> findById(Long id) {
         return this.movieRepository.findById(id);
     }
 
     @Override
-    public IMovie create(IMovie object) {
+    public Movie create(Movie object) {
         return this.movieRepository.save(object);
     }
 
     @Override
-    public IMovie update(IMovie object) {
+    public Movie update(Movie object) {
         return this.movieRepository.save(object);
     }
 

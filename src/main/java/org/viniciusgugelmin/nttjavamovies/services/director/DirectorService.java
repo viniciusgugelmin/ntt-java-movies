@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.director;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.director.IDirector;
+import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
 import org.viniciusgugelmin.nttjavamovies.repositories.director.DirectorRepository;
 
 import java.util.List;
@@ -18,22 +18,22 @@ public class DirectorService implements IDirectorService {
     }
 
     @Override
-    public List<IDirector> list() {
+    public List<Director> list() {
         return this.directorRepository.findAll();
     }
 
     @Override
-    public Optional<IDirector> findById(Long id) {
+    public Optional<Director> findById(Long id) {
         return this.directorRepository.findById(id);
     }
 
     @Override
-    public IDirector create(IDirector object) {
+    public Director create(Director object) {
         return this.directorRepository.save(object);
     }
 
     @Override
-    public IDirector update(IDirector object) {
+    public Director update(Director object) {
         return this.directorRepository.save(object);
     }
 

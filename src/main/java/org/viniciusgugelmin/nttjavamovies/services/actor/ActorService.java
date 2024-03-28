@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.actor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.actor.IActor;
+import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
 import org.viniciusgugelmin.nttjavamovies.repositories.actor.ActorRepository;
 
 import java.util.List;
@@ -10,30 +10,26 @@ import java.util.Optional;
 
 @Service
 public class ActorService implements IActorService {
-    private final ActorRepository actorRepository;
-
     @Autowired
-    public ActorService(ActorRepository actorRepository) {
-        this.actorRepository = actorRepository;
-    }
+    private ActorRepository actorRepository;
 
     @Override
-    public List<IActor> list() {
+    public List<Actor> list() {
         return this.actorRepository.findAll();
     }
 
     @Override
-    public Optional<IActor> findById(Long id) {
+    public Optional<Actor> findById(Long id) {
         return this.actorRepository.findById(id);
     }
 
     @Override
-    public IActor create(IActor object) {
+    public Actor create(Actor object) {
         return this.actorRepository.save(object);
     }
 
     @Override
-    public IActor update(IActor object) {
+    public Actor update(Actor object) {
         return this.actorRepository.save(object);
     }
 

@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.studio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.studio.IStudio;
+import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 import org.viniciusgugelmin.nttjavamovies.repositories.studio.StudioRepository;
 
 import java.util.List;
@@ -18,22 +18,22 @@ public class StudioService implements IStudioService {
     }
 
     @Override
-    public List<IStudio> list() {
+    public List<Studio> list() {
         return this.studioRepository.findAll();
     }
 
     @Override
-    public Optional<IStudio> findById(Long id) {
+    public Optional<Studio> findById(Long id) {
         return this.studioRepository.findById(id);
     }
 
     @Override
-    public IStudio create(IStudio object) {
+    public Studio create(Studio object) {
         return this.studioRepository.save(object);
     }
 
     @Override
-    public IStudio update(IStudio object) {
+    public Studio update(Studio object) {
         return this.studioRepository.save(object);
     }
 

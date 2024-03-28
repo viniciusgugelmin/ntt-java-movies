@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.genre;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.genre.IGenre;
+import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.repositories.genre.GenreRepository;
 
 import java.util.List;
@@ -18,22 +18,22 @@ public class GenreService implements IGenreService {
     }
 
     @Override
-    public List<IGenre> list() {
+    public List<Genre> list() {
         return this.genreRepository.findAll();
     }
 
     @Override
-    public Optional<IGenre> findById(Long id) {
+    public Optional<Genre> findById(Long id) {
         return this.genreRepository.findById(id);
     }
 
     @Override
-    public IGenre create(IGenre object) {
+    public Genre create(Genre object) {
         return this.genreRepository.save(object);
     }
 
     @Override
-    public IGenre update(IGenre object) {
+    public Genre update(Genre object) {
         return this.genreRepository.save(object);
     }
 

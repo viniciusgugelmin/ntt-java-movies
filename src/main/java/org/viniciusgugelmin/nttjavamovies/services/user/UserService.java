@@ -2,7 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.viniciusgugelmin.nttjavamovies.entities.user.IUser;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.repositories.user.UserRepository;
 
 import java.util.List;
@@ -18,22 +18,22 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<IUser> list() {
+    public List<User> list() {
         return this.userRepository.findAll();
     }
 
     @Override
-    public Optional<IUser> findById(Long id) {
+    public Optional<User> findById(Long id) {
         return this.userRepository.findById(id);
     }
 
     @Override
-    public IUser create(IUser object) {
+    public User create(User object) {
         return this.userRepository.save(object);
     }
 
     @Override
-    public IUser update(IUser object) {
+    public User update(User object) {
         return this.userRepository.save(object);
     }
 
