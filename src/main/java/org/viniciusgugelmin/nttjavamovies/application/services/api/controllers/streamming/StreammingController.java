@@ -1,41 +1,61 @@
 package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.streamming;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.viniciusgugelmin.nttjavamovies.entities.streamming.IStreamming;
+import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
+import org.viniciusgugelmin.nttjavamovies.services.streamming.IStreammingService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/streamming")
 public class StreammingController implements IStreammingController {
+    private final IStreammingService streammingService;
+
+    @Autowired
+    public StreammingController(IStreammingService streammingService) {
+        this.streammingService = streammingService;
+    }
+
     @GetMapping(value = "/")
     @Override
-    public ResponseEntity<List<IStreamming>> findAll() {
-        return null;
+    public ResponseEntity<List<Streamming>> findAll() {
+        List<Streamming> streammings = this.streammingService.list();
+
+        return ResponseEntity.ok(streammings);
     }
 
     @GetMapping(value = "/{id}")
     @Override
-    public ResponseEntity<IStreamming> findById(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<Optional<Streamming>> findById(@PathVariable Long id) {
+        Optional<Streamming> streamming = this.streammingService.findById(id);
+
+        return streamming.isPresent() ? ResponseEntity.ok(streamming) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(value = "/")
     @Override
-    public ResponseEntity<IStreamming> save(@RequestBody IStreamming streamming) {
-        return null;
+    public ResponseEntity<Streamming> save(@RequestBody Streamming streamming) {
+        Streamming newStreamming = this.streammingService.create(streamming);
+
+        return ResponseEntity.ok(newStreamming);
     }
 
     @PutMapping(value = "/")
     @Override
-    public ResponseEntity<IStreamming> update(@RequestBody IStreamming streamming) {
-        return null;
+    public ResponseEntity<Streamming> update(@RequestBody Streamming streamming) {
+        Streamming updatedStreamming = this.streammingService.update(streamming);
+
+        return ResponseEntity.ok(updatedStreamming);
     }
 
     @DeleteMapping(value = "/{id}")
     @Override
-    public ResponseEntity<IStreamming> delete(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        this.streammingService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

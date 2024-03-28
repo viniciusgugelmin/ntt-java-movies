@@ -2,8 +2,8 @@ package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.viniciusgugelmin.nttjavamovies.entities.user.IUser;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
 public interface IUserController {
-    ResponseEntity<IUser> save(@RequestBody IUser user);
+    ResponseEntity<User> save(@RequestBody User user);
 }
