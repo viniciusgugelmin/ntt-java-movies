@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.actor;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Actor implements IActor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "The actor's name is required")
     @Column(nullable = false, length = 100)
     private String Name;
 
