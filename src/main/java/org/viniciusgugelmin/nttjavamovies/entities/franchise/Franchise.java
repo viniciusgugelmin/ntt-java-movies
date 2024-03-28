@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.franchise;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
@@ -14,7 +16,8 @@ public class Franchise implements IFranchise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Name;
 
     /* Getters */
@@ -43,7 +46,7 @@ public class Franchise implements IFranchise {
 
     /* Relations */
 
-    @OneToMany()
+    @OneToMany
     private List<Movie> Movies;
 
     /* Relations Getters */

@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.streamming;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
@@ -15,10 +17,12 @@ public class Streamming implements IStreamming {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Name;
 
-    @Column(nullable = false, length = 500)
+    @NotNull
+    @Length(max = 500)
     private String Url;
 
     /* Getters */
@@ -57,7 +61,7 @@ public class Streamming implements IStreamming {
 
     /* Relations */
 
-    @ManyToMany()
+    @ManyToMany
     private List<Movie> Movies;
 
     /* Relations Getters */

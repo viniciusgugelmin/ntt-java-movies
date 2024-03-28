@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.director;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.Date;
@@ -15,13 +17,15 @@ public class Director implements IDirector {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Name;
 
-    @Column(nullable = false)
+    @NotNull
     private Date Birthdate;
 
-    @Column(nullable = false, length = 50)
+    @NotNull
+    @Length(max = 50)
     private String Country;
 
     /* Getters */
@@ -65,7 +69,7 @@ public class Director implements IDirector {
 
     /* Relations */
 
-    @ManyToMany()
+    @ManyToMany
     private List<Movie> Movies;
 
     /* Relations Getters */

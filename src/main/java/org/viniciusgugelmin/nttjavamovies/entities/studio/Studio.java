@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.studio;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
@@ -14,10 +16,12 @@ public class Studio implements IStudio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Name;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Country;
 
     /* Getters */
@@ -56,7 +60,7 @@ public class Studio implements IStudio {
 
     /* Relations */
 
-    @OneToMany()
+    @OneToMany
     private List<Movie> movies;
 
     /* Relations Getters */

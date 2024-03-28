@@ -1,7 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.actor;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.Date;
@@ -16,14 +17,15 @@ public class Actor implements IActor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "The actor's name is required")
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Name;
 
-    @Column(nullable = false)
+    @NotNull
     private Date Birthdate;
 
-    @Column(nullable = false, length = 50)
+    @NotNull
+    @Length(max = 50)
     private String Country;
 
     /* Getters */
@@ -67,7 +69,7 @@ public class Actor implements IActor {
 
     /* Relations */
 
-    @ManyToMany()
+    @ManyToMany
     private List<Movie> Movies;
 
     /* Relations Getters */

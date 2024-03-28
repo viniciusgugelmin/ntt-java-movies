@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.actor.Actor;
 import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
 import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
@@ -22,28 +24,31 @@ public class Movie implements IMovie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imdbID;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String Title;
 
-    @Column(nullable = false)
+    @NotNull
     private Date Released;
 
-    @Column(nullable = false)
+    @NotNull
     private Double Runtime;
 
-    @Column(length = 500)
+    @Length(max = 500)
     private String Plot;
 
-    @Column(nullable = false, length = 50)
+    @NotNull
+    @Length(max = 50)
     private String Language;
 
-    @Column(nullable = false, length = 50)
+    @NotNull
+    @Length(max = 50)
     private String Country;
 
-    @Column(length = 50)
+    @Length(max = 100)
     private String Awards;
 
-    @Column(length = 100)
+    @Length(max = 100)
     private String Poster;
 
     /* Getters */
@@ -152,22 +157,22 @@ public class Movie implements IMovie {
 
     /* Relations */
 
-    @ManyToOne()
+    @ManyToOne
     private Genre Genre;
 
-    @ManyToOne()
+    @ManyToOne
     private Studio Studio;
 
-    @ManyToOne()
+    @ManyToOne
     private Franchise Franchise;
 
-    @ManyToMany()
+    @ManyToMany
     private List<Actor> Actors;
 
-    @ManyToMany()
+    @ManyToMany
     private List<Director> Directors;
 
-    @ManyToMany()
+    @ManyToMany
     private List<Streamming> Streammings;
 
     /* Relations Getters */

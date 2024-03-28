@@ -1,6 +1,8 @@
 package org.viniciusgugelmin.nttjavamovies.entities.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
@@ -14,7 +16,8 @@ public class User implements IUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Length(max = 100)
     private String name;
 
     /* Getters */
@@ -39,7 +42,7 @@ public class User implements IUser {
 
     /* Relations */
 
-    @ManyToMany()
+    @ManyToMany
     private List<Movie> FavoriteMovies;
 
     /* Relations Getters */
