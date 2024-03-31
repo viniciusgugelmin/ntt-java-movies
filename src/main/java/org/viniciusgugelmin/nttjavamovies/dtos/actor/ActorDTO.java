@@ -28,6 +28,10 @@ public class ActorDTO implements IActorDTO {
         this.Country = actor.getCountry();
     }
 
+    public static List<ActorDTO> convertList(List<Actor> actors) {
+        return actors.stream().map(ActorDTO::new).toList();
+    }
+
     /* Getters */
 
     @Override

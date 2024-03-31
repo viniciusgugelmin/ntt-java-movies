@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.dtos.franchise;
 
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 
 import java.util.List;
 
@@ -8,6 +9,16 @@ public class FranchiseDTO implements IFranchiseDTO {
     /* Properties */
 
     private String Name;
+
+    /* Constructors */
+
+    public FranchiseDTO() {
+
+    }
+
+    public FranchiseDTO(Franchise franchise) {
+        this.Name = franchise.getName();
+    }
 
     /* Getters */
 

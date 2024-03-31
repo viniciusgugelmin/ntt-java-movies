@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.dtos.studio;
 
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
 
 import java.util.List;
 
@@ -10,6 +11,16 @@ public class StudioDTO implements IStudioDTO {
     private String Name;
 
     private String Country;
+
+    /* Constructors */
+
+    public StudioDTO() {
+    }
+
+    public StudioDTO(Studio studio) {
+        this.Name = studio.getName();
+        this.Country = studio.getCountry();
+    }
 
     /* Getters */
 

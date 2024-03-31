@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.dtos.streamming;
 
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
 
 import java.util.List;
 
@@ -12,6 +13,21 @@ public class StreammingDTO implements IStreammingDTO {
     private String Name;
 
     private String Url;
+
+    /* Constructors */
+
+    public StreammingDTO() {
+
+    }
+
+    public StreammingDTO(Streamming streamming) {
+        this.Name = streamming.getName();
+        this.Url = streamming.getUrl();
+    }
+
+    public static List<StreammingDTO> convertList(List<Streamming> streammings) {
+        return streammings.stream().map(StreammingDTO::new).toList();
+    }
 
     /* Getters */
 

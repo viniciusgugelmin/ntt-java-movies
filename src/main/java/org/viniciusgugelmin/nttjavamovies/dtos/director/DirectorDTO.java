@@ -1,6 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.dtos.director;
 
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.director.Director;
 
 import java.util.Date;
 import java.util.List;
@@ -20,10 +21,14 @@ public class DirectorDTO implements IDirectorDTO {
 
     }
 
-    public DirectorDTO(DirectorDTO director) {
+    public DirectorDTO(Director director) {
         this.Name = director.getName();
         this.Birthdate = director.getBirthDate();
         this.Country = director.getCountry();
+    }
+
+    public static List<DirectorDTO> convertList(List<Director> directors) {
+        return directors.stream().map(DirectorDTO::new).toList();
     }
 
     /* Getters */

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.min.MovieMinDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.withoutRelations.MovieWithoutRelationsDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.user.min.UserMinDTO;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.facades.movie.IMovieFacade;
@@ -69,8 +71,16 @@ public class MovieController implements IMovieController {
 
     @PutMapping(value = "/{id}/user/{userId}")
     @Override
-    public ResponseEntity<User> controlFavorite(@PathVariable Long id, @PathVariable Long userId) {
-        User response = this.movieFacade.controlFavorite(id, userId);
+    public ResponseEntity<UserMinDTO> controlFavorite(@PathVariable Long id, @PathVariable Long userId) {
+        UserMinDTO response = this.movieFacade.controlFavorite(id, userId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping(value = "/{id}/franchise/{franchiseId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> changeFranchise(@PathVariable Long id, @PathVariable Long franchiseId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.changeFranchise(id, franchiseId);
 
         return ResponseEntity.ok(response);
     }
