@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -8,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "users")
 public class User implements IUser {
     /* Properties */
@@ -42,7 +45,7 @@ public class User implements IUser {
 
     /* Relations */
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "FavoritedBy")
     private List<Movie> FavoriteMovies;
 
     /* Relations Getters */

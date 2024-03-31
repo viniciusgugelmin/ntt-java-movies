@@ -4,10 +4,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.min.MovieMinDTO;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+import org.viniciusgugelmin.nttjavamovies.facades.movie.IMovieFacade;
 import org.viniciusgugelmin.nttjavamovies.services.movie.IMovieService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Tag(name = "Movie")
@@ -16,9 +19,12 @@ import java.util.Optional;
 public class MovieController implements IMovieController {
     private final IMovieService movieService;
 
+    private final IMovieFacade movieFacade;
+
     @Autowired
-    public MovieController(IMovieService movieService) {
+    public MovieController(IMovieService movieService, IMovieFacade movieFacade) {
         this.movieService = movieService;
+        this.movieFacade = movieFacade;
     }
 
     @GetMapping(value = "")
@@ -27,6 +33,13 @@ public class MovieController implements IMovieController {
         List<Movie> movies = this.movieService.list();
 
         return ResponseEntity.ok(movies);
+    }
+
+    @GetMapping(value = "/search")
+    public ResponseEntity<Map<String, List<MovieMinDTO>>> searchByTerm(@RequestParam String s) {
+        Map<String, List<MovieMinDTO>> response = this.movieFacade.listMoviesBySearch(s);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "/{id}")

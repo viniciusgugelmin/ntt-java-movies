@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.genre;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -8,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "genres")
 public class Genre implements IGenre {
     /* Properties */
@@ -46,7 +49,7 @@ public class Genre implements IGenre {
 
     /* Relations */
 
-    @OneToMany
+    @OneToMany(mappedBy = "Genre")
     private List<Movie> Movies;
 
     /* Relations Getters */

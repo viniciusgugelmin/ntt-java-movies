@@ -28,6 +28,11 @@ public class MovieService implements IMovieService {
     }
 
     @Override
+    public List<Movie> listMoviesBySearch(String search) {
+        return this.movieRepository.getMoviesByTitle(search);
+    }
+
+    @Override
     public Movie create(Movie object) {
         return this.movieRepository.save(object);
     }

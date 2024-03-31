@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.movie;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +11,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -16,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "imdbID")
 @Table(name = "movies")
 public class Movie implements IMovie {
     /* Properties */
@@ -158,22 +162,48 @@ public class Movie implements IMovie {
     /* Relations */
 
     @ManyToOne
+    @JoinColumn(name = "genre_id")
     private Genre Genre;
 
     @ManyToOne
+    @JoinColumn(name = "studio_id")
     private Studio Studio;
 
     @ManyToOne
+    @JoinColumn(name = "franchise_id")
     private Franchise Franchise;
 
     @ManyToMany
+    @JoinTable(
+            name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
     private List<Actor> Actors;
 
     @ManyToMany
+    @JoinTable(
+            name = "movie_director",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "director_id")
+    )
     private List<Director> Directors;
 
     @ManyToMany
+    @JoinTable(
+            name = "movie_streamming",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "streamming_id")
+    )
     private List<Streamming> Streammings;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_user",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> FavoritedBy;
 
     /* Relations Getters */
 
@@ -207,6 +237,11 @@ public class Movie implements IMovie {
         return this.Streammings;
     }
 
+    @Override
+    public List<User> getFavoritedBy() {
+        return this.FavoritedBy;
+    }
+
     /* Relations Setters */
 
     @Override
@@ -237,5 +272,10 @@ public class Movie implements IMovie {
     @Override
     public void setStreammings(List<Streamming> streammings) {
         this.Streammings = streammings;
+    }
+
+    @Override
+    public void setFavoritedBy(List<User> users) {
+        this.FavoritedBy = users;
     }
 }

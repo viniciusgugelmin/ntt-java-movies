@@ -6,6 +6,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.franchise.Franchise;
 import org.viniciusgugelmin.nttjavamovies.entities.genre.Genre;
 import org.viniciusgugelmin.nttjavamovies.entities.streamming.Streamming;
 import org.viniciusgugelmin.nttjavamovies.entities.studio.Studio;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
 import java.time.Year;
 import java.util.Date;
@@ -21,10 +22,6 @@ public interface IMovie {
     Date getReleased();
 
     Double getRuntime();
-
-    /*Director getDirector();*/
-
-    /*ArrayList<Actor> getActors();*/
 
     String getPlot();
 
@@ -45,10 +42,6 @@ public interface IMovie {
     void setReleased(Date released);
 
     void setRuntime(Double runtime);
-
-    /*void setDirector(Director director);*/
-
-    /*void setActors(ArrayList<Actor> actors);*/
 
     void setPlot(String plot);
 
@@ -78,6 +71,8 @@ public interface IMovie {
 
     List<Streamming> getStreammings();
 
+    List<User> getFavoritedBy();
+
     /* Relations Setters */
 
     void setGenre(Genre genre);
@@ -91,4 +86,6 @@ public interface IMovie {
     void setDirectors(List<Director> directors);
 
     void setStreammings(List<Streamming> streammings);
+
+    void setFavoritedBy(List<User> favoriteBy);
 }

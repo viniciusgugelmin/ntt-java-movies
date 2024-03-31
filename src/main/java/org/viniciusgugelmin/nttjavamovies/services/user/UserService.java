@@ -2,7 +2,9 @@ package org.viniciusgugelmin.nttjavamovies.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
+import org.viniciusgugelmin.nttjavamovies.repositories.movie.MovieRepository;
 import org.viniciusgugelmin.nttjavamovies.repositories.user.UserRepository;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService {
     private final UserRepository userRepository;
+
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -25,6 +28,11 @@ public class UserService implements IUserService {
     @Override
     public Optional<User> findById(Long id) {
         return this.userRepository.findById(id);
+    }
+
+    @Override
+    public List<Movie> getFavorites(Long id) {
+        return this.userRepository.getFavorites(id);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.streamming;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -8,6 +10,7 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "streammings")
 public class Streamming implements IStreamming {
 
@@ -61,7 +64,7 @@ public class Streamming implements IStreamming {
 
     /* Relations */
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "Streammings")
     private List<Movie> Movies;
 
     /* Relations Getters */

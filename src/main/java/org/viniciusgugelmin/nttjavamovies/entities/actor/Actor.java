@@ -1,5 +1,7 @@
 package org.viniciusgugelmin.nttjavamovies.entities.actor;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "actors")
 public class Actor implements IActor {
     /* Properties */
@@ -74,7 +77,7 @@ public class Actor implements IActor {
 
     /* Relations */
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "Actors")
     private List<Movie> Movies;
 
     /* Relations Getters */
