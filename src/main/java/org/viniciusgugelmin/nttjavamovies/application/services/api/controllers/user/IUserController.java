@@ -8,9 +8,12 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserController {
     ResponseEntity<User> save(@RequestBody User user);
 
     ResponseEntity<List<MovieMinDTO>> getFavorites(@PathVariable Long id);
+
+    ResponseEntity<Optional<User>> findByName(@PathVariable String name);
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.min.MovieMinDTO;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.facades.movie.IMovieFacade;
 import org.viniciusgugelmin.nttjavamovies.services.movie.IMovieService;
 
@@ -64,6 +65,14 @@ public class MovieController implements IMovieController {
         Movie updatedMovie = this.movieService.update(movie);
 
         return ResponseEntity.ok(updatedMovie);
+    }
+
+    @PutMapping(value = "/{id}/user/{userId}")
+    @Override
+    public ResponseEntity<User> controlFavorite(@PathVariable Long id, @PathVariable Long userId) {
+        User response = this.movieFacade.controlFavorite(id, userId);
+
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping(value = "/{id}")

@@ -11,6 +11,7 @@ import org.viniciusgugelmin.nttjavamovies.facades.user.IUserFacade;
 import org.viniciusgugelmin.nttjavamovies.services.user.IUserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "User")
 @RestController
@@ -24,6 +25,14 @@ public class UserController implements IUserController {
     public UserController(IUserService userService, IUserFacade userFacade) {
         this.userService = userService;
         this.userFacade = userFacade;
+    }
+
+    @GetMapping(value = "/{name}")
+    @Override
+    public ResponseEntity<Optional<User>> findByName(@PathVariable String name) {
+        Optional<User> user = this.userService.findByName(name);
+
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping(value = "/{id}/favorites")

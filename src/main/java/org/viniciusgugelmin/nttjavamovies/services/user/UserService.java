@@ -31,6 +31,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public Optional<User> findByName(String name) {
+        return this.userRepository.findByName(name);
+    }
+
+    @Override
     public List<Movie> getFavorites(Long id) {
         return this.userRepository.getFavorites(id);
     }
