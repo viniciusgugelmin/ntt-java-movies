@@ -11,11 +11,28 @@ import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface IMovieController extends IBaseController<Movie> {
+
+
+    ResponseEntity<MovieWithoutRelationsDTO> findByIdFormatted(@PathVariable Long id);
+
     ResponseEntity<Map<String, List<MovieMinDTO>>> searchByTerm(@RequestParam String s);
 
     ResponseEntity<UserMinDTO> controlFavorite(@PathVariable Long id, @PathVariable Long userId);
 
     ResponseEntity<MovieWithoutRelationsDTO> changeFranchise(@PathVariable Long id, @PathVariable Long franchiseId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> addStreamming(@PathVariable Long id, @PathVariable Long streammingId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> removeStreamming(@PathVariable Long id, @PathVariable Long streammingId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> addActor(@PathVariable Long id, @PathVariable Long actorId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> removeActor(@PathVariable Long id, @PathVariable Long actorId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> addDirector(@PathVariable Long id, @PathVariable Long directorId);
+
+    ResponseEntity<MovieWithoutRelationsDTO> removeDirector(@PathVariable Long id, @PathVariable Long directorId);
 }

@@ -47,6 +47,13 @@ public class MovieController implements IMovieController {
 
     @GetMapping(value = "/{id}")
     @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> findByIdFormatted(@PathVariable Long id) {
+        MovieWithoutRelationsDTO movie = this.movieFacade.findById(id);
+
+        return ResponseEntity.ok(movie);
+    }
+
+    @Override
     public ResponseEntity<Optional<Movie>> findById(@PathVariable Long id) {
         Optional<Movie> movie = this.movieService.findById(id);
 
@@ -81,6 +88,54 @@ public class MovieController implements IMovieController {
     @Override
     public ResponseEntity<MovieWithoutRelationsDTO> changeFranchise(@PathVariable Long id, @PathVariable Long franchiseId) {
         MovieWithoutRelationsDTO response = this.movieFacade.changeFranchise(id, franchiseId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping(value = "/{id}/streamming/{streammingId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> addStreamming(@PathVariable Long id, @PathVariable Long streammingId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.addStreamming(id, streammingId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping(value = "/{id}/actor/{actorId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> addActor(@PathVariable Long id, @PathVariable Long actorId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.addActor(id, actorId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping(value = "/{id}/director/{directorId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> addDirector(@PathVariable Long id, @PathVariable Long directorId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.addDirector(id, directorId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping(value = "/{id}/streamming/{streammingId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> removeStreamming(@PathVariable Long id, @PathVariable Long streammingId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.removeStreamming(id, streammingId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping(value = "/{id}/actor/{actorId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> removeActor(@PathVariable Long id, @PathVariable Long actorId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.removeActor(id, actorId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping(value = "/{id}/director/{directorId}")
+    @Override
+    public ResponseEntity<MovieWithoutRelationsDTO> removeDirector(@PathVariable Long id, @PathVariable Long directorId) {
+        MovieWithoutRelationsDTO response = this.movieFacade.removeDirector(id, directorId);
 
         return ResponseEntity.ok(response);
     }
