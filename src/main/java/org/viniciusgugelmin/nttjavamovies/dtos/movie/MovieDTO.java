@@ -6,6 +6,7 @@ import org.viniciusgugelmin.nttjavamovies.dtos.franchise.FranchiseDTO;
 import org.viniciusgugelmin.nttjavamovies.dtos.genre.GenreDTO;
 import org.viniciusgugelmin.nttjavamovies.dtos.streamming.StreammingDTO;
 import org.viniciusgugelmin.nttjavamovies.dtos.studio.StudioDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -33,6 +34,34 @@ public class MovieDTO implements IMovieDTO {
     private Optional<String> Awards;
 
     private Optional<String> Poster;
+
+    /* Constructors */
+
+    public MovieDTO() {
+    }
+
+    public MovieDTO(Movie movie) {
+        this.imdbID = Optional.ofNullable(movie.getImdbID());
+        this.Title = movie.getTitle();
+        this.Released = movie.getReleased();
+        this.Runtime = movie.getRuntime();
+        this.Plot = Optional.ofNullable(movie.getPlot());
+        this.Language = movie.getLanguage();
+        this.Country = movie.getCountry();
+        this.Awards = Optional.ofNullable(movie.getAwards());
+        this.Poster = Optional.ofNullable(movie.getPoster());
+
+        this.Genre = new GenreDTO(movie.getGenre());
+        this.Studio = new StudioDTO(movie.getStudio());
+        this.Franchise = new FranchiseDTO(movie.getFranchise());
+        this.actorDTOS = ActorDTO.convertList(movie.getActors());
+        this.Directors = DirectorDTO.convertList(movie.getDirectors());
+        this.Streammings = StreammingDTO.convertList(movie.getStreammings());
+    }
+
+    public static List<MovieDTO> convertList(List<Movie> movies) {
+        return movies.stream().map(MovieDTO::new).toList();
+    }
 
     /* Getters */
 

@@ -3,7 +3,9 @@ package org.viniciusgugelmin.nttjavamovies.application.services.api.controllers.
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.min.MovieMinDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.user.withoutRelations.UserWithoutRelationsDTO;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
@@ -15,5 +17,7 @@ public interface IUserController {
 
     ResponseEntity<List<MovieMinDTO>> getFavorites(@PathVariable Long id);
 
-    ResponseEntity<Optional<User>> findByName(@PathVariable String name);
+    ResponseEntity<UserWithoutRelationsDTO> findByName(@PathVariable String name);
+
+    ResponseEntity<UserWithoutRelationsDTO> addAddress(@PathVariable Long id, @PathVariable String cep);
 }

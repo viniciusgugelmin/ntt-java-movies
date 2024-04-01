@@ -24,6 +24,7 @@ public class UserMinDTO implements IUserMinDTO {
 
     public UserMinDTO(User user) {
         this.name = user.getName();
+
         this.FavoriteMovies = MovieMinDTO.convertList(user.getFavoriteMovies());
     }
 

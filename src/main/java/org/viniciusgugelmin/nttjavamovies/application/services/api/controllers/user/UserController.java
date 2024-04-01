@@ -5,13 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.custom.min.MovieMinDTO;
-import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
+import org.viniciusgugelmin.nttjavamovies.dtos.user.withoutRelations.UserWithoutRelationsDTO;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.facades.user.IUserFacade;
 import org.viniciusgugelmin.nttjavamovies.services.user.IUserService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Tag(name = "User")
 @RestController
@@ -29,8 +28,8 @@ public class UserController implements IUserController {
 
     @GetMapping(value = "/{name}")
     @Override
-    public ResponseEntity<Optional<User>> findByName(@PathVariable String name) {
-        Optional<User> user = this.userService.findByName(name);
+    public ResponseEntity<UserWithoutRelationsDTO> findByName(@PathVariable String name) {
+        UserWithoutRelationsDTO user = this.userFacade.findByName(name);
 
         return ResponseEntity.ok(user);
     }
@@ -41,6 +40,14 @@ public class UserController implements IUserController {
         List<MovieMinDTO> favorites = this.userFacade.getFavorites(id);
 
         return ResponseEntity.ok(favorites);
+    }
+
+    @PutMapping(value = "/{id}/address/{cep}")
+    @Override
+    public ResponseEntity<UserWithoutRelationsDTO> addAddress(@PathVariable Long id, @PathVariable String cep) {
+        UserWithoutRelationsDTO user = this.userFacade.addAddress(id, cep);
+
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping(value = "/save")

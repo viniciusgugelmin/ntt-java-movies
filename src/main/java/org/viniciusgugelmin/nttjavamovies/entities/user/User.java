@@ -23,6 +23,21 @@ public class User implements IUser {
     @Length(max = 100)
     private String name;
 
+    @Length(max = 100)
+    private String street;
+
+    @Length(max = 50)
+    private String cep;
+
+    @Length(max = 100)
+    private String neighborhood;
+
+    @Length(max = 100)
+    private String city;
+
+    @Length(max = 100)
+    private String state;
+
     /* Getters */
 
     public Long getId() {
@@ -33,6 +48,26 @@ public class User implements IUser {
         return this.name;
     }
 
+    public String getCep() {
+        return this.cep;
+    }
+
+    public String getStreet() {
+        return this.street;
+    }
+
+    public String getNeighborhood() {
+        return this.neighborhood;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
     /* Setters */
 
     public void setId(Long id) {
@@ -41,6 +76,26 @@ public class User implements IUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     /* Relations */

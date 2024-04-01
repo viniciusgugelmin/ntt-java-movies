@@ -2,6 +2,7 @@ package org.viniciusgugelmin.nttjavamovies.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.viniciusgugelmin.nttjavamovies.application.config.exception.custom.UserNotFoundException;
 import org.viniciusgugelmin.nttjavamovies.entities.movie.Movie;
 import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 import org.viniciusgugelmin.nttjavamovies.repositories.movie.MovieRepository;
@@ -32,7 +33,13 @@ public class UserService implements IUserService {
 
     @Override
     public Optional<User> findByName(String name) {
-        return this.userRepository.findByName(name);
+        Optional<User> user = this.userRepository.findByName(name);
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException(name);
+        }
+
+        return user;
     }
 
     @Override

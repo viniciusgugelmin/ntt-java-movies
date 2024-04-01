@@ -1,14 +1,15 @@
-package org.viniciusgugelmin.nttjavamovies.dtos.user;
+package org.viniciusgugelmin.nttjavamovies.dtos.user.withoutRelations;
 
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.entities.user.User;
 
 import java.util.List;
 import java.util.Optional;
 
-public class UserDTO implements IUserDTO {
+public class UserWithoutRelationsDTO implements IUserWithoutRelationsDTO {
     /* Properties */
 
-    private String name;
+    private String Name;
 
     private Optional<String> cep;
 
@@ -20,10 +21,27 @@ public class UserDTO implements IUserDTO {
 
     private Optional<String> state;
 
+    /* Constructors */
+
+    public UserWithoutRelationsDTO() {
+    }
+
+    public UserWithoutRelationsDTO(User user) {
+        this.Name = user.getName();
+        this.cep = Optional.ofNullable(user.getCep());
+        this.street = Optional.ofNullable(user.getStreet());
+        this.neighborhood = Optional.ofNullable(user.getNeighborhood());
+        this.city = Optional.ofNullable(user.getCity());
+        this.state = Optional.ofNullable(user.getState());
+
+        this.FavoriteMovies = MovieDTO.convertList(user.getFavoriteMovies());
+    }
+
     /* Getters */
 
+    @Override
     public String getName() {
-        return this.name;
+        return this.Name;
     }
 
     public Optional<String> getCep() {
@@ -48,8 +66,9 @@ public class UserDTO implements IUserDTO {
 
     /* Setters */
 
+    @Override
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public void setCep(String cep) {
@@ -72,16 +91,16 @@ public class UserDTO implements IUserDTO {
         this.state = Optional.ofNullable(state);
     }
 
+    /* Computed */
+
+    @Override
+    public List<String> getFavoriteMoviesNames() {
+        return this.FavoriteMovies.stream().map(MovieDTO::getTitle).toList();
+    }
+
     /* Relations */
 
     private List<MovieDTO> FavoriteMovies;
-
-    /* Relations Getters */
-
-    @Override
-    public List<MovieDTO> getFavoriteMovies() {
-        return this.FavoriteMovies;
-    }
 
     /* Relations Setters */
 

@@ -1,11 +1,19 @@
-package org.viniciusgugelmin.nttjavamovies.dtos.user;
+package org.viniciusgugelmin.nttjavamovies.dtos.user.withoutRelations;
 
+import org.viniciusgugelmin.nttjavamovies.dtos.actor.ActorDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.director.DirectorDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.franchise.FranchiseDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.genre.GenreDTO;
 import org.viniciusgugelmin.nttjavamovies.dtos.movie.MovieDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.streamming.StreammingDTO;
+import org.viniciusgugelmin.nttjavamovies.dtos.studio.StudioDTO;
 
+import java.time.Year;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserDTO {
+public interface IUserWithoutRelationsDTO {
     /* Getters */
 
     String getName();
@@ -34,9 +42,9 @@ public interface IUserDTO {
 
     void setState(String state);
 
-    /* Relations Getters */
+    /* Computed */
 
-    List<MovieDTO> getFavoriteMovies();
+    List<String> getFavoriteMoviesNames();
 
     /* Relations Setters */
 
